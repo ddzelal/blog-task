@@ -8,6 +8,6 @@
         }
     },
     "jwt": {
-        "acdessTokenLife": "1d"
+        "accessTokenLife": "1d"
     }
 }

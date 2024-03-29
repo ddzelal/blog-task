@@ -1,0 +1,13 @@
+{
+    "app": {
+        "port": 9001
+    },
+    "log": {
+        "console": {
+            "level": "info"
+        }
+    },
+    "jwt": {
+        "acdessTokenLife": "1d"
+    }
+}

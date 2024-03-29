@@ -1,0 +1,11 @@
+{
+    "database": {
+        "path": {
+            "blog": "test/database/blogs.json",
+            "user": "test/database/users.json"
+        }
+    },
+    "jwt": {
+        "accessToken": "test"
+    }
+}

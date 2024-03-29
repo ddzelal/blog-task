@@ -3,7 +3,7 @@ import config from "config";
 import fs from "fs";
 import { omit } from "lodash";
 
-interface User {
+export interface User {
     id?: string;
     email: string;
     fullName: string;

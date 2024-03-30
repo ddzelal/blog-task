@@ -14,7 +14,7 @@ const config: JestConfigWithTsJest = {
     transform: {
         // '^.+\\.[tj]sx?$' to process js/ts with ts-jest
         // '^.+\\.m?[tj]sx?$' to process js/ts/mjs/mts with ts-jest
-        "^.+\\.tsx?$": [
+        "^.+\\.ts?$": [
             "ts-jest",
             {
                 useESM: true,
@@ -23,6 +23,8 @@ const config: JestConfigWithTsJest = {
     },
     transformIgnorePatterns: ["/node_modules/(?!lodash-es)"],
     testEnvironment: "node",
+    globalSetup: "./test/jestGlobalSetup",
+    globalTeardown: "./test/jestGlobalTeardown",
 };
 
 export default config;

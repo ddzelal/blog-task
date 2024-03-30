@@ -17,5 +17,5 @@ Router.put("/blogs/:id", Authenticate, updateBlog);
 Router.delete("/blogs/:id", Authenticate, deleteBlog);
 
 // Authentication routes
-Router.get("/login", login);
+Router.post("/login", login);
 Router.post("/register", register);

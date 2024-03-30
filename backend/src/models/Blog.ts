@@ -1,7 +1,7 @@
 import DefaultModel from "./DefaultModel.js";
 import config from "config";
 
-interface Blog {
+export interface Blog {
     id?: string;
     title: string;
     authorId: string;

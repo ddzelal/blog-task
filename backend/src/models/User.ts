@@ -1,7 +1,7 @@
 import DefaultModel from "./DefaultModel.js";
 import config from "config";
-import fs from "fs";
-import { omit } from "lodash";
+import { promises as fs } from "fs";
+import _ from "lodash";
 
 export interface User {
     id?: string;
@@ -15,15 +15,15 @@ class UserModel extends DefaultModel<User> {
         super(config.get("database.path.user"));
     }
 
-    findAllWithoutPassword(): Omit<User, "password">[] {
-        const fileData = fs.readFileSync(this.collectionPath, { encoding: "utf-8" });
+    async findAllWithoutPassword(): Promise<Omit<User, "password">[]> {
+        const fileData = await fs.readFile(this.collectionPath, { encoding: "utf-8" });
         const users: User[] = JSON.parse(fileData);
-        return users.map((user) => omit(user, ["password"]));
+        return users.map((user) => _.omit(user, ["password"]));
     }
 
-    findByEmail(email: string): User | undefined {
-        const jsonData = this.find();
-        return jsonData.find((item) => item.email === email);
+    async findByEmail(email: string): Promise<User | undefined> {
+        const jsonData = await this.find();
+        return jsonData.find((item: User) => item.email === email);
     }
 }
 

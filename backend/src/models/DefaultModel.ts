@@ -1,11 +1,14 @@
-import fs from "fs";
+import { promises as fs } from "fs";
 import { Log } from "../services/Log";
 import path from "path";
-import { fileURLToPath } from "url";
 import { nanoid } from "nanoid";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const __baseDir = process.env.PWD || __dirname;
+const getBaseDir = (): string => {
+    if (process.env.PWD) return process.env.PWD;
+    return process.cwd();
+};
+
+const __baseDir = getBaseDir();
 
 interface IModel {
     id?: string;
@@ -16,51 +19,56 @@ class DefaultModel<T extends IModel> {
 
     constructor(collectionName: string) {
         this.collectionPath = path.join(__baseDir, collectionName);
-        this.initCollection();
     }
 
-    private initCollection(): void {
-        if (!fs.existsSync(this.collectionPath)) {
-            fs.writeFileSync(this.collectionPath, JSON.stringify([]));
-            Log.info("Created new collection", { collectionPath: this.collectionPath });
-        } else {
-            Log.info("File already exists", { collectionPath: this.collectionPath });
+    public async initCollection(): Promise<void> {
+        try {
+            const exists = await fs
+                .stat(this.collectionPath)
+                .then(() => true)
+                .catch(() => false);
+            if (!exists) {
+                await fs.writeFile(this.collectionPath, JSON.stringify([]));
+                Log.info("Created new collection", { collectionPath: this.collectionPath });
+            }
+        } catch (error) {
+            Log.error("Error in initCollection", { error });
         }
     }
 
-    create(data: Partial<T>): T {
-        const jsonData = this.find();
+    async create(data: Partial<T>): Promise<T> {
+        const jsonData = await this.find();
         const newData = { ...data, id: data.id || nanoid() } as T;
         jsonData.push(newData);
-        fs.writeFileSync(this.collectionPath, JSON.stringify(jsonData, null, 2));
+        await fs.writeFile(this.collectionPath, JSON.stringify(jsonData, null, 2));
         return newData;
     }
 
-    find(): T[] {
-        const fileData = fs.readFileSync(this.collectionPath, { encoding: "utf-8" });
+    async find(): Promise<T[]> {
+        const fileData = await fs.readFile(this.collectionPath, { encoding: "utf-8" });
         return JSON.parse(fileData);
     }
 
-    findById(id: string): T | undefined {
-        const jsonData = this.find();
+    async findById(id: string): Promise<T | undefined> {
+        const jsonData = await this.find();
         return jsonData.find((item) => item.id === id);
     }
 
-    updateOne(id: string, newData: Partial<T>): T | null {
-        const jsonData = this.find();
+    async updateOne(id: string, newData: Partial<T>): Promise<T | null> {
+        const jsonData = await this.find();
         const itemIndex = jsonData.findIndex((item) => item.id === id);
         if (itemIndex >= 0) {
             jsonData[itemIndex] = { ...jsonData[itemIndex], ...newData };
-            fs.writeFileSync(this.collectionPath, JSON.stringify(jsonData, null, 2));
+            await fs.writeFile(this.collectionPath, JSON.stringify(jsonData, null, 2));
             return jsonData[itemIndex];
         }
         return null;
     }
 
-    deleteOne(id: string): string {
-        const jsonData = this.find();
+    async deleteOne(id: string): Promise<string> {
+        const jsonData = await this.find();
         const filteredData = jsonData.filter((item) => item.id !== id);
-        fs.writeFileSync(this.collectionPath, JSON.stringify(filteredData, null, 2));
+        await fs.writeFile(this.collectionPath, JSON.stringify(filteredData, null, 2));
         return id;
     }
 }

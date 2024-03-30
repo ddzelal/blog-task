@@ -7,5 +7,8 @@
     },
     "jwt": {
         "accessToken": "ba30a53bfe640383126636cb448fcd9089ca1da6bb3d355d0d80f75e64f67ef47fa4a22d92666216c43e25925e2cb7f6f7a685df73b05518eb44a67942e9c5ffa9988bcf3ac49d58bea4e8f277b73b62bdce53948dfb6972b42fc8f4f57eb68ba5e4e46e0bdbaf379e082f5b4e461cbccdc55bc1cc7c72f788898a56ddc79d18"
+    },
+    "encryption": {
+        "hashSaltRounds": 10
     }
 }

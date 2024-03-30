@@ -1,31 +1,34 @@
-// AuthController.ts
 import { Request, Response } from "express";
+import config from "config";
 import UserModel from "../models/User";
 import JWT from "../services/JWT";
 import bcrypt from "bcryptjs";
 import { ConflictException } from "../exceptions/ConflictException";
 import { AsyncHandler } from "../utils/AsyncHandler";
+import { NotFoundException } from "../exceptions/NotFoundException";
 
 const userModel = new UserModel();
 const jwt = new JWT();
+const salt = config.get("encryption.hashSaltRounds") as number;
 
-export const register = AsyncHandler((request: Request, response: Response) => {
+export const register = AsyncHandler(async (request: Request, response: Response) => {
     const { email, password, fullName } = request.body;
-    const existingUser = userModel.findByEmail(email);
+    const existingUser = await userModel.findByEmail(email);
     if (existingUser) {
         throw new ConflictException({ message: "User already exists" });
     }
 
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    const newUser = userModel.create({ email, fullName, password: hashedPassword });
+    const hashedPassword = bcrypt.hashSync(password, salt);
+    const newUser = await userModel.create({ email, fullName, password: hashedPassword });
     response.status(201).json({ user: newUser });
 });
 
-export const login = AsyncHandler((request: Request, response: Response) => {
+export const login = AsyncHandler(async (request: Request, response: Response) => {
     const { email, password } = request.body;
-    const user = userModel.findByEmail(email);
+
+    const user = await userModel.findByEmail(email);
     if (!user) {
-        throw new ConflictException({ message: "Invalid email or password" });
+        throw new NotFoundException({});
     }
 
     const isPasswordValid = bcrypt.compareSync(password, user.password);

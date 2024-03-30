@@ -6,6 +6,10 @@
         }
     },
     "jwt": {
-        "accessToken": "test"
+        "accessToken": "ba30a53bfe640383126636cb448fcd9",
+        "accessTokenLife": "3s"
+    },
+    "encryption": {
+        "hashSaltRounds": 10
     }
 }

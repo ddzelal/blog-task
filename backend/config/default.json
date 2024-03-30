@@ -1,6 +1,7 @@
 {
     "app": {
-        "port": 9001
+        "port": 9001,
+        "url": "http://localhost:9001"
     },
     "log": {
         "console": {

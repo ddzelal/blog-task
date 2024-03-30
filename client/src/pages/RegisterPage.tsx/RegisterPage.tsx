@@ -1,10 +1,19 @@
-import { Box, Button, TextField, Typography, Container, Paper, Link } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Button, TextField, Typography, Container, Paper, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 const RegisterPage = () => {
     return (
         <Container component="main" maxWidth="xs">
-            <Paper elevation={3} sx={{ marginTop: 8, padding: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Paper
+                elevation={3}
+                sx={{
+                    marginTop: 8,
+                    padding: 4,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                }}
+            >
                 <Typography component="h1" variant="h5">
                     Register
                 </Typography>
@@ -48,12 +57,7 @@ const RegisterPage = () => {
                         id="confirmPassword"
                         autoComplete="new-password"
                     />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                    >
+                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                         Sign Up
                     </Button>
                     <Box display="flex" justifyContent="center">

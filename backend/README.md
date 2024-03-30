@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 Before you begin, ensure you have met the following requirements:
 
--   You have installed the latest version of [Node.js and npm](https://nodejs.org/).
+-   You have installed the 18^ version of [Node.js and npm](https://nodejs.org/).
 
 ### Installation
 

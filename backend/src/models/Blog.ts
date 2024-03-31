@@ -9,7 +9,7 @@ export interface Blog {
 }
 
 export interface FindWithFiltersResult {
-    blogs: Blog[];
+    data: Blog[];
     totalCount: number;
 }
 
@@ -41,7 +41,7 @@ class BlogModel extends DefaultModel<Blog> {
         const endIndex = startIndex + itemsPerPage;
         const paginatedBlogs = filteredBlogs.slice(startIndex, endIndex);
 
-        return { blogs: paginatedBlogs, totalCount };
+        return { data: paginatedBlogs, totalCount };
     }
 }
 

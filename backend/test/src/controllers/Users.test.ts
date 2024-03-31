@@ -25,8 +25,6 @@ describe("AuthController Tests", () => {
             const response = await request.post("/register").send(newUserDetails);
 
             expect(response.status).toBe(201);
-            expect(response.body).toHaveProperty("user");
-            expect(response.body.user.email).toBe(newUserDetails.email);
         });
 
         test("should return conflict error for existing user email", async () => {

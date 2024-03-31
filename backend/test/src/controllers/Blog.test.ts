@@ -23,8 +23,8 @@ describe("BlogController Tests", () => {
             const response = await request.get("/blogs");
             expect(response.status).toBe(200);
             console.log(response.body);
-            expect(response.body.blogs.length).toBeGreaterThanOrEqual(1);
-            expect(response.body.blogs[0]).toHaveProperty("title", testBlog.title);
+            expect(response.body.data.length).toBeGreaterThanOrEqual(1);
+            expect(response.body.data[0]).toHaveProperty("title", testBlog.title);
             expect(response.body.totalCount).toBe(1);
         });
     });

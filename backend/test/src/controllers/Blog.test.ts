@@ -1,12 +1,8 @@
 import supertest from "supertest";
-import config from "config";
 import { Application } from "../../../src/Application";
 import { UserFactory } from "../../factory/UserFactory";
 import { BlogFactory } from "../../factory/BlogFactory";
-import BlogModel from "../../../src/models/Blog";
-import UserModel from "../../../src/models/User";
 import JWT from "../../../src/services/JWT";
-import { clearJSONFile } from "../../utils/cleanDatabase";
 
 const request = supertest(Application);
 
@@ -26,8 +22,10 @@ describe("BlogController Tests", () => {
         it("should return all blogs", async () => {
             const response = await request.get("/blogs");
             expect(response.status).toBe(200);
-            expect(response.body.length).toBeGreaterThanOrEqual(1);
-            expect(response.body[0]).toHaveProperty("title", testBlog.title);
+            console.log(response.body);
+            expect(response.body.blogs.length).toBeGreaterThanOrEqual(1);
+            expect(response.body.blogs[0]).toHaveProperty("title", testBlog.title);
+            expect(response.body.totalCount).toBe(1);
         });
     });
 
@@ -39,7 +37,7 @@ describe("BlogController Tests", () => {
         });
 
         it("should return 404 for a blog that does not exist", async () => {
-            const response = await request.get("/blogs/gaga").set("Authorization", `Bearer ${accessToken}`);
+            const response = await request.get("/blogs/wrongId").set("Authorization", `Bearer ${accessToken}`);
             expect(response.status).toBe(404);
         });
     });

@@ -19,8 +19,8 @@ export const register = AsyncHandler(async (request: Request, response: Response
     }
 
     const hashedPassword = bcrypt.hashSync(password, salt);
-    const newUser = await userModel.create({ email, fullName, password: hashedPassword });
-    response.status(201).json({ user: newUser });
+    await userModel.create({ email, fullName, password: hashedPassword });
+    response.status(201).json();
 });
 
 export const login = AsyncHandler(async (request: Request, response: Response) => {

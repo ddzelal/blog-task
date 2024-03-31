@@ -1,5 +1,5 @@
 import { API_ENDPOINT_URL } from "../../constants/api_endpoint_url";
-import { LoginRequest, LoginResponse } from "../../interfaces/auth.rquest";
+import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from "../../interfaces/auth.rquest";
 import { api } from "../config/axiosConfig";
 
 export const login = async (body: LoginRequest): Promise<LoginResponse> => {
@@ -7,7 +7,7 @@ export const login = async (body: LoginRequest): Promise<LoginResponse> => {
   return data;
 };
 
-  export const register = async (body: any) => {
+  export const register = async (body: RegisterRequest): Promise<RegisterResponse> => {
     const { data } = await api.post(API_ENDPOINT_URL.REGISTER, body);
     return data 
   };

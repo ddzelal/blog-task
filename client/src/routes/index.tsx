@@ -4,15 +4,18 @@ import PublicRoute from "./PublicRoute";
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import RegisterPage from "../pages/RegisterPage.tsx/RegisterPage";
+import { Link } from "react-router-dom";
 
 const Router = () => (
     <Routes>
         <Route
             errorElement={<ErrorBoundary />}
-            path="/home"
+            path="/"
             element={
                 <PublicRoute>
-                    <h1>Home</h1>
+                    <Link to={'/login'}>
+                    <h1>Home GO TO LOGIN</h1>
+                    </Link>
                 </PublicRoute>
             }
         />

@@ -2,6 +2,7 @@ import { Box, Button, TextField, Typography, Container, Paper, Link } from "@mui
 import { Link as RouterLink } from "react-router-dom";
 
 const RegisterPage = () => {
+
     return (
         <Container component="main" maxWidth="xs">
             <Paper

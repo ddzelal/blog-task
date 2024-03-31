@@ -1,7 +1,19 @@
 import { Box, Button, TextField, Typography, Container, Paper, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { useLoginQuery } from "../../services/queries/auth.service";
 
 const LoginPage = () => {
+
+
+    const {mutateAsync,data} = useLoginQuery()
+
+    const test = async () => {
+        console.log("tu sam");
+     await mutateAsync({email:'dzelal_d@live.com',password:'dzelal123'})
+     console.log(data);
+    }
+
+
     return (
         <Container component="main" maxWidth="xs">
             <Paper
@@ -38,7 +50,7 @@ const LoginPage = () => {
                         id="password"
                         autoComplete="current-password"
                     />
-                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                    <Button onClick={() => test()}  fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                         Sign In
                     </Button>
                     <Box display="flex" justifyContent="center">

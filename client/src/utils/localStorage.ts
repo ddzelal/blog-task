@@ -8,15 +8,15 @@ const getItem = <T = unknown>(key: string): T | null => {
     const value = window.localStorage.getItem(key);
     if (!value) return null;
     return JSON.parse(value);
-  };
-  
-  /**
-   * Saves a value to localStorage with the given key.
-   * @param key The key to use to store the value in localStorage.
-   * @param value The value to save to localStorage.
-   */
-  const setItem = (key: string, value: unknown) => {
+};
+
+/**
+ * Saves a value to localStorage with the given key.
+ * @param key The key to use to store the value in localStorage.
+ * @param value The value to save to localStorage.
+ */
+const setItem = (key: string, value: unknown) => {
     window.localStorage.setItem(key, JSON.stringify(value));
-  };
-  
-  export { getItem, setItem };
+};
+
+export { getItem, setItem };

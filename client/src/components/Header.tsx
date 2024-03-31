@@ -12,15 +12,13 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
-import useAuthStore from "../../store/useAuthStore";
+import useAuthStore from "../store/useAuthStore";
 
 const pages = ["Home", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Header() {
-
     const { isAuthenticated } = useAuthStore((state) => state);
-
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -40,7 +38,7 @@ function Header() {
         setAnchorElUser(null);
     };
 
-    if(!isAuthenticated){
+    if (!isAuthenticated) {
         return null;
     }
 

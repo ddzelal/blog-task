@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
-import LoginPage from "../pages/LoginPage/LoginPage";
-import RegisterPage from "../pages/RegisterPage.tsx/RegisterPage";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 import { Link } from "react-router-dom";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const Router = () => (
     <Routes>
@@ -13,8 +13,8 @@ const Router = () => (
             path="/"
             element={
                 <PublicRoute>
-                    <Link to={'/login'}>
-                    <h1>Home GO TO LOGIN</h1>
+                    <Link to={"/login"}>
+                        <h1>Home GO TO LOGIN</h1>
                     </Link>
                 </PublicRoute>
             }

@@ -1,66 +1,76 @@
 import { Box, Button, TextField, Typography, Container, Paper, Link } from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../../services/queries/auth.service";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../../validation/auth.validation";
-import { LoginRequest } from "../../interfaces/auth.rquest";
-import useAuthStore from "../../store/useAuthStore";
+import { registerSchema } from "../validation/authValidation";
+import { useRegisterMutation } from "../services/queries/authService";
+import { RegisterRequest } from "../interfaces/authRequest";
 
-const LoginPage = () => {
-    const { setIsAuthenticated } = useAuthStore((state) => state);
-
+const RegisterPage = () => {
     const navigate = useNavigate();
 
-    const { mutateAsync } = useLoginMutation();
+    const { mutateAsync } = useRegisterMutation();
+
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: yupResolver(loginSchema) });
+    } = useForm<RegisterRequest>({ resolver: yupResolver(registerSchema) });
 
-    const handleLogin = async (data:LoginRequest) => {
-        await mutateAsync(data,{onSuccess:()=>{
-            setIsAuthenticated(true)
-            navigate('/blog')
-        }});
+    const handleRegister = async (data: RegisterRequest) => {
+        await mutateAsync(data, {
+            onSuccess: () => navigate("/login"),
+        });
     };
 
     return (
         <Container component="main" maxWidth="xs">
-            <Paper elevation={3} sx={{ marginTop: 8, padding: 4, display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Paper
+                elevation={3}
+                sx={{ marginTop: 8, padding: 4, display: "flex", flexDirection: "column", alignItems: "center" }}
+            >
                 <Typography component="h1" variant="h5">
-                    Login
+                    Register
                 </Typography>
-                <Box component="form" onSubmit={handleSubmit(handleLogin)} sx={{ mt: 1 }}>
+                <Box component="form" onSubmit={handleSubmit(handleRegister)} sx={{ mt: 1 }}>
                     <TextField
                         margin="normal"
-                        required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        {...register("email")}
-                        error={!!errors.email}
-                        helperText={errors.email?.message}
+                        id="fullName"
+                        label="Full Name"
+                        autoComplete="name"
+                        {...register("fullName")}
+                        error={!!errors.fullName}
+                        helperText={errors.fullName?.message}
                         autoFocus
                     />
                     <TextField
                         margin="normal"
-                        required
                         fullWidth
-                        id="password"
+                        id="email"
+                        label="Email Address"
+                        autoComplete="email"
+                        {...register("email")}
+                        error={!!errors.email}
+                        helperText={errors.email?.message}
+                    />
+                    <TextField
+                        margin="normal"
+                        fullWidth
                         label="Password"
                         type="password"
+                        id="password"
+                        autoComplete="new-password"
                         {...register("password")}
                         error={!!errors.password}
                         helperText={errors.password?.message}
                     />
                     <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                        Sign In
+                        Sign Up
                     </Button>
                     <Box display="flex" justifyContent="center">
-                        <Link component={RouterLink} to="/register" variant="body2">
-                            Don't have an account? Sign Up
+                        <Link component={RouterLink} to="/login" variant="body2">
+                            Already have an account? Sign In
                         </Link>
                     </Box>
                 </Box>
@@ -69,4 +79,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default RegisterPage;

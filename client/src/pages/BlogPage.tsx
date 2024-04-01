@@ -11,6 +11,7 @@ import { QUERY_KEY } from "../constants/appConstant";
 import BlogCard from "../components/BlogCard";
 import { calculateNumberOfPages } from "../utils/calculateNumberOfPages";
 import { getBlogs } from "../api/requests/blog";
+import { toast } from "react-toastify";
 
 function BlogPage() {
     const navigate = useNavigate();
@@ -22,7 +23,9 @@ function BlogPage() {
     const { data, isPlaceholderData  } = useGetBlogsQuery(page);
     const { mutateAsync } = useBlogMutation();
 
-    const { isAuthenticated } = useAuthStore((state) => state);
+    const { isAuthenticated,user } = useAuthStore((state) => state);
+
+    useEffect(()=>{},[user])
 
     useEffect(() => {
         if (!isPlaceholderData && page < calculateNumberOfPages(9,data?.totalCount || 0)) {
@@ -36,6 +39,7 @@ function BlogPage() {
     const handleAddBlog = async (blogData: CreateBlogRequest) => {
         await mutateAsync(blogData,{onSuccess:()=>{
             queryClient.invalidateQueries({queryKey:[QUERY_KEY.BLOG]})
+            toast("Blog added")
         }});
         setOpen(false);
     };
@@ -65,7 +69,7 @@ function BlogPage() {
             <Grid marginTop={2} container spacing={2} justifyContent="center" alignItems="center">
             {data?.data?.map((blog, index) => (
                 <Grid item xs={12} sm={6} md={4} key={index}>
-                    <BlogCard title={blog.title} content={blog.content} />
+                    <BlogCard userId={user?.id || null}  blog={blog} />
                 </Grid>
             ))}
            </Grid>

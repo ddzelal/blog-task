@@ -11,3 +11,9 @@ export const createBlog = async (body: CreateBlogRequest): Promise<void> => {
     const { data } = await api.post(API_ENDPOINT_URL.BLOG, body);
     return data;
 };
+
+
+export const deleteBlog = async (blogId:string): Promise<void> => {
+    const { data } = await api.delete(`${API_ENDPOINT_URL.BLOG}/${blogId}`);
+    return data;
+};

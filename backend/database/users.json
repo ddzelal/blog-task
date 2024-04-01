@@ -38,5 +38,11 @@
     "fullName": "Dzelal Dupljak",
     "password": "$2a$10$96zto5/bu69x857VVV9GC.QO0EulpYjUSJqdeeDRlFhs9Vl/EsU4a",
     "id": "ZEEDVYpxGK0etHyYisJOb"
+  },
+  {
+    "email": "test@gmail.com",
+    "fullName": "Test Testic",
+    "password": "$2a$10$v7S85QrcBy9aoPGMQzKS/OnMeSFXQ1/SFNCE6untA/TN2IzBCDlsO",
+    "id": "AAQIkYbgmk7sINJzY0AJD"
   }
 ]

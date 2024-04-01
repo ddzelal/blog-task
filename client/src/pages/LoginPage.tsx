@@ -1,21 +1,27 @@
 import { Box, Button, TextField, Typography, Container, Paper, Link } from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../services/queries/authService";
+import { useGetUserInfoQuery, useLoginMutation } from "../services/queries/authService";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../validation/authValidation";
-import { LoginRequest } from "../interfaces/authRequest";
+import { GetMeReposne, LoginRequest } from "../interfaces/authRequest";
 import useAuthStore from "../store/useAuthStore";
 import { setItem } from "../utils/localStorage";
 import { toast } from "react-toastify";
-import { LOCAL_STORAGE_KEY } from "../constants/appConstant";
+import { LOCAL_STORAGE_KEY, QUERY_KEY } from "../constants/appConstant";
+import { useQueryClient } from "@tanstack/react-query";
+import { getMe } from "../api/requests/auth";
 
 const LoginPage = () => {
-    const { setIsAuthenticated } = useAuthStore((state) => state);
+
+    const queryClient = useQueryClient()
+
+    const { setIsAuthenticated,setUser } = useAuthStore((state) => state);
 
     const navigate = useNavigate();
 
     const { mutateAsync } = useLoginMutation();
+
     const {
         register,
         handleSubmit,
@@ -24,9 +30,12 @@ const LoginPage = () => {
 
     const handleLogin = async (data: LoginRequest) => {
         await mutateAsync(data, {
-            onSuccess: (response) => {
+            onSuccess: async (response) => {
                 setItem(LOCAL_STORAGE_KEY.ACCESS_TOKEN, response.accessToken);
                 setIsAuthenticated(true);
+                const userInfo = await queryClient.fetchQuery<GetMeReposne, Error>({queryKey:[QUERY_KEY.USER],queryFn:getMe,staleTime:Infinity});
+                setUser(userInfo)
+                queryClient.invalidateQueries({queryKey:[QUERY_KEY.USER]})
                 navigate("/blog");
                 toast.success("successful login");
             },

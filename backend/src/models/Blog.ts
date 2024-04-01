@@ -39,7 +39,7 @@ class BlogModel extends DefaultModel<Blog> {
         const { page, itemsPerPage } = pagination;
         const startIndex = (page - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-        const paginatedBlogs = filteredBlogs.slice(startIndex, endIndex);
+        const paginatedBlogs = filteredBlogs.reverse().slice(startIndex, endIndex);
 
         return { data: paginatedBlogs, totalCount };
     }

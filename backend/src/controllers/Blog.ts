@@ -14,7 +14,7 @@ export const getBlogs = AsyncHandler(async (request: Request, response: Response
     };
     const pagination = {
         page: parseInt(page, 10) || 1,
-        itemsPerPage: parseInt(itemsPerPage, 10) || 10,
+        itemsPerPage: parseInt(itemsPerPage, 10) || 9,
     };
 
     const blogs = await blogModel.findWithFilters(queryFilters as Partial<Blog>, pagination);

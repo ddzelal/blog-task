@@ -1,6 +1,7 @@
 import { type AxiosError, type AxiosResponse, type InternalAxiosRequestConfig } from "axios";
 import { getItem } from "../../utils/localStorage";
 import { toast } from "react-toastify";
+import { LOCAL_STORAGE_KEY } from "../../constants/appConstant";
 
 export interface ConsoleError {
     status: number;
@@ -8,7 +9,7 @@ export interface ConsoleError {
 }
 
 export const requestInterceptor = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-    const token = getItem<string>("token");
+    const token = getItem<string>(LOCAL_STORAGE_KEY.ACCESS_TOKEN);
     if (token) {
         config.headers.set("Authorization", `Bearer ${token}`);
     }

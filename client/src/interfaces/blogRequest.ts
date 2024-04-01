@@ -5,6 +5,10 @@ export interface Blog {
     content: string;
 }
 
+export interface CreateBlogRequest {
+    title:string,
+    content:string
+}
 export interface BlogFindWithFiltersResultResponse {
     data: Blog[];
     totalCount: number;

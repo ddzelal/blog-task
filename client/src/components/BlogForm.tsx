@@ -6,11 +6,11 @@ import { useEffect } from "react";
 
 export interface BlogFormData {
     title: string;
-    authorId: string;
+    authorId?: string;
     content: string;
     createdAt?: Date;
     updatedAt?: Date;
-    id?:string
+    id?: string;
 }
 
 interface Props {
@@ -21,9 +21,14 @@ interface Props {
 }
 
 const BlogForm = ({ open, onClose, onSubmit, initialValues }: Props) => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<BlogFormData>({
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<BlogFormData>({
         resolver: yupResolver(createBlogSchema),
-        defaultValues: initialValues
+        defaultValues: initialValues,
     });
 
     useEffect(() => {
@@ -34,7 +39,7 @@ const BlogForm = ({ open, onClose, onSubmit, initialValues }: Props) => {
 
     return (
         <Dialog open={open} onClose={onClose}>
-            <DialogTitle>{initialValues ? 'Update Blog' : 'Add New Blog'}</DialogTitle>
+            <DialogTitle>{initialValues ? "Update Blog" : "Add New Blog"}</DialogTitle>
             <DialogContent>
                 <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
                     <TextField
@@ -56,7 +61,7 @@ const BlogForm = ({ open, onClose, onSubmit, initialValues }: Props) => {
                         rows={4}
                     />
                     <Button type="submit" color="primary" variant="contained" sx={{ mt: 2 }}>
-                        {initialValues ? 'Update Blog' : 'Save Blog'}
+                        {initialValues ? "Update Blog" : "Save Blog"}
                     </Button>
                 </Box>
             </DialogContent>

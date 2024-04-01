@@ -12,7 +12,7 @@ function App() {
         <Fragment>
             <QueryClientProvider client={queryClient}>
                 <BrowserRouter>
-                    <ApplicationLayout/>
+                    <ApplicationLayout />
                     <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} />
                 </BrowserRouter>
             </QueryClientProvider>

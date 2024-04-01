@@ -25,5 +25,5 @@ export interface RegisterResponse {
 export interface GetMeReposne {
     email: string;
     fullName: string;
-    id:string
+    id: string;
 }

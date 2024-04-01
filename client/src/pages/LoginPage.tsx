@@ -13,10 +13,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { getMe } from "../api/requests/auth";
 
 const LoginPage = () => {
+    const queryClient = useQueryClient();
 
-    const queryClient = useQueryClient()
-
-    const { setIsAuthenticated,setUser } = useAuthStore((state) => state);
+    const { setIsAuthenticated, setUser } = useAuthStore((state) => state);
 
     const navigate = useNavigate();
 
@@ -33,9 +32,15 @@ const LoginPage = () => {
             onSuccess: async (response) => {
                 setItem(LOCAL_STORAGE_KEY.ACCESS_TOKEN, response.accessToken);
                 setIsAuthenticated(true);
-                const userInfo = await queryClient.fetchQuery<GetMeReposne, Error>({queryKey:[QUERY_KEY.USER],queryFn:getMe,staleTime:Infinity});
-                setUser(userInfo)
-                queryClient.invalidateQueries({queryKey:[QUERY_KEY.USER]})
+
+                const userInfo = await queryClient.fetchQuery<GetMeReposne, Error>({
+                    queryKey: [QUERY_KEY.USER],
+                    queryFn: getMe,
+                    staleTime: Infinity,
+                });
+                setUser(userInfo);
+
+                queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USER] });
                 navigate("/blog");
                 toast.success("successful login");
             },

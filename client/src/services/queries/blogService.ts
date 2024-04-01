@@ -3,10 +3,14 @@ import { BlogFindWithFiltersResultResponse, CreateBlogRequest, UpdateBlogRequest
 import { createBlog, deleteBlog, getBlogs, updateBlog } from "../../api/requests/blog";
 import { QUERY_KEY } from "../../constants/appConstant";
 
-export const useGetBlogsQuery = (page: number): UseQueryResult<BlogFindWithFiltersResultResponse, Error> => {
+export const useGetBlogsQuery = (
+    page: number,
+    sortOrder: string,
+    sortBy: string,
+): UseQueryResult<BlogFindWithFiltersResultResponse, Error> => {
     return useQuery<BlogFindWithFiltersResultResponse, Error>({
-        queryKey: [QUERY_KEY.BLOG, page],
-        queryFn: () => getBlogs(page),
+        queryKey: [QUERY_KEY.BLOG, page, sortOrder, sortBy],
+        queryFn: () => getBlogs(page, sortOrder, sortBy),
         staleTime: Infinity,
     });
 };
@@ -17,9 +21,12 @@ export const useBlogMutation = (): UseMutationResult<void, Error, CreateBlogRequ
 
 export const useUpdateBlogMutation = (): UseMutationResult<void, Error, UpdateBlogRequest> => {
     return useMutation<void, Error, UpdateBlogRequest>({
-        mutationFn: (updateRequest: UpdateBlogRequest) => updateBlog(updateRequest)
+        mutationFn: (updateRequest: UpdateBlogRequest) => updateBlog(updateRequest),
     });
 };
-export const useDeleteBlogMutation = (): UseMutationResult<void, Error,string> => {
-    return useMutation<void, Error,string>({mutationKey:[QUERY_KEY.DELETE_BLOG], mutationFn:(blogId:string)=> deleteBlog(blogId) });
+export const useDeleteBlogMutation = (): UseMutationResult<void, Error, string> => {
+    return useMutation<void, Error, string>({
+        mutationKey: [QUERY_KEY.DELETE_BLOG],
+        mutationFn: (blogId: string) => deleteBlog(blogId),
+    });
 };

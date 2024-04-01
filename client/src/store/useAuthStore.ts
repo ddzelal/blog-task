@@ -14,13 +14,13 @@ export interface AuthStore extends AuthState {
     setToken: (token: string | null) => void;
     removeToken: () => void;
     goLogout: () => void;
-    setUser: (user: User | null) => void; 
+    setUser: (user: User | null) => void;
 }
 
 const initialState: Pick<AuthStore, keyof AuthState> = {
     isAuthenticated: getItem(LOCAL_STORAGE_KEY.ACCESS_TOKEN) ? true : false,
     token: null,
-    user:null
+    user: null,
 };
 
 export const useAuthStore = create<AuthStore>()((set) => ({
@@ -35,7 +35,7 @@ export const useAuthStore = create<AuthStore>()((set) => ({
         set(() => ({ token: null }));
     },
     goLogout: async () => {
-        set(() => ({ token: null, refreshToken: null, isAuthenticated: false ,user:null}));
+        set(() => ({ token: null, refreshToken: null, isAuthenticated: false, user: null }));
     },
     setUser: (user) => {
         set(() => ({ user }));

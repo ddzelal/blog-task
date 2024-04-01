@@ -18,7 +18,7 @@ export interface UpdateBlogData {
 }
 
 export interface UpdateBlogRequest {
-    body: UpdateBlogData;  
+    body: UpdateBlogData;
     blogId: string;
 }
 export interface BlogFindWithFiltersResultResponse {

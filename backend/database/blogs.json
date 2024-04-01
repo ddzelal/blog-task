@@ -1,18 +1,50 @@
 [
   {
     "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
-    "title": "Test blog 12",
-    "content": "kdwmawdowa doiwak kowad wa\nDWADWADWADAWDWA",
-    "id": "P7Y9gXK7Paah5wsBg363N",
-    "createdAt": "2024-04-01T15:29:31.071Z",
-    "updatedAt": "2024-04-01T18:32:42.631Z"
+    "title": "The Future of Renewable Energy",
+    "content": "Renewable energy sources like solar and wind power are becoming increasingly important in our fight against climate change. This article explores the latest advancements in renewable energy technology and its potential to transform our world.",
+    "id": "5243opB-DvQpYT6_bI8Ok",
+    "createdAt": "2024-04-01T15:29:48.939Z",
+    "updatedAt": "2024-04-01T20:04:46.988Z"
   },
   {
     "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
-    "title": "Test blog 2",
-    "content": "jest",
-    "id": "5243opB-DvQpYT6_bI8Ok",
-    "createdAt": "2024-04-01T15:29:48.939Z",
-    "updatedAt": "2024-04-01T16:17:03.322Z"
+    "title": "Exploring the Depths of Ocean Biodiversity",
+    "content": "The ocean is home to a vast array of life forms, many of which remain undiscovered. This blog delves into the importance of ocean biodiversity and the ongoing efforts to explore and protect this critical ecosystem.",
+    "id": "4bNeUawabSjvn8Sf7IS0E",
+    "createdAt": "2024-04-01T19:46:36.351Z",
+    "updatedAt": "2024-04-01T19:46:43.235Z"
+  },
+  {
+    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
+    "title": "The Impact of Artificial Intelligence on Society",
+    "content": "Artificial Intelligence (AI) is transforming industries and shaping the future of human interaction. This post examines the societal impact of AI and discusses both the opportunities and challenges it presents.",
+    "id": "hqzpQnBDqvV3bpkWHzaT6",
+    "createdAt": "2024-04-01T19:46:57.906Z",
+    "updatedAt": "2024-04-01T19:46:57.906Z"
+  },
+  {
+    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
+    "title": "Sustainable Living: Tips for Reducing Your Carbon Footprint",
+    "content": "Sustainable living is not just a trend but a necessity. This guide provides practical tips on how you can reduce your carbon footprint and live a more eco-friendly life.",
+    "id": "Hljk5eyzLocgY9M0UVPTX",
+    "createdAt": "2024-04-01T19:47:02.293Z",
+    "updatedAt": "2024-04-01T19:47:02.293Z"
+  },
+  {
+    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
+    "title": "The Renaissance of Space Exploration",
+    "content": "With private companies like SpaceX and Blue Origin entering the scene, space exploration is undergoing a renaissance. This article explores the new era of space travel and what it could mean for humanity.",
+    "id": "7uTBKYEe6krL0Q8TWzs1c",
+    "createdAt": "2024-04-01T19:47:06.512Z",
+    "updatedAt": "2024-04-01T19:47:06.512Z"
+  },
+  {
+    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
+    "title": "The Psychology of Habit Formation",
+    "content": "Understanding the psychology behind habit formation can help us create healthier and more productive lifestyles. This blog explores the science of habits and how to harness it for personal growth.",
+    "id": "FSy9gz2TT03Yx9heKmnDr",
+    "createdAt": "2024-04-01T19:58:04.244Z",
+    "updatedAt": "2024-04-01T19:58:04.244Z"
   }
 ]

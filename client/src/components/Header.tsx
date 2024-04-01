@@ -18,7 +18,7 @@ import { LOCAL_STORAGE_KEY } from "../constants/appConstant";
 
 function Header() {
     const { isAuthenticated, goLogout } = useAuthStore((state) => state);
-    const pages = ["Home", "Blog", `${isAuthenticated ? "" : "Login"}`];
+    const pages = ["Blog", `${isAuthenticated ? "" : "Login"}`];
     const settings = ["Logout"];
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -42,10 +42,6 @@ function Header() {
         }
         setAnchorElUser(null);
     };
-
-    // if (!isAuthenticated) {
-    //     return null;
-    // }
 
     return (
         <AppBar position="static">

@@ -9,11 +9,10 @@ const SearchBar = ({ onSearch }: Props) => {
         <TextField
             label="Search Blogs"
             variant="outlined"
-            sx={{ flexGrow: 1, marginRight: '20px' }}
+            sx={{ flexGrow: 1, marginRight: "20px" }}
             onChange={onSearch}
         />
     );
 };
 
-
-export default SearchBar
+export default SearchBar;

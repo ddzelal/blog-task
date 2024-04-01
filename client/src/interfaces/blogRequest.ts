@@ -6,8 +6,8 @@ export interface Blog {
 }
 
 export interface CreateBlogRequest {
-    title:string,
-    content:string
+    title: string;
+    content: string;
 }
 export interface BlogFindWithFiltersResultResponse {
     data: Blog[];

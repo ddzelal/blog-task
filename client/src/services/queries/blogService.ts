@@ -3,14 +3,13 @@ import { BlogFindWithFiltersResultResponse, CreateBlogRequest } from "../../inte
 import { createBlog, getBlogs } from "../../api/requests/blog";
 import { QUERY_KEY } from "../../constants/appConstant";
 
-export const useGetBlogsQuery = (): UseQueryResult<BlogFindWithFiltersResultResponse, Error> => {
+export const useGetBlogsQuery = (page: number): UseQueryResult<BlogFindWithFiltersResultResponse, Error> => {
     return useQuery<BlogFindWithFiltersResultResponse, Error>({
-        queryKey: [QUERY_KEY.BLOG],
-        queryFn: getBlogs,
+        queryKey: [QUERY_KEY.BLOG, page],
+        queryFn: () => getBlogs(page),
         staleTime: Infinity,
     });
 };
-
 
 export const useBlogMutation = (): UseMutationResult<void, Error, CreateBlogRequest> => {
     return useMutation<void, Error, CreateBlogRequest>({ mutationFn: createBlog });

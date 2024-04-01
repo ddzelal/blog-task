@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { useBlogMutation, useGetBlogsQuery } from "../services/queries/blogService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 import { CreateBlogRequest } from "../interfaces/blogRequest";
 import { Box, Button, Grid, Pagination } from "@mui/material";
@@ -9,16 +9,30 @@ import BlogForm from "../components/BlogForm";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "../constants/appConstant";
 import BlogCard from "../components/BlogCard";
+import { calculateNumberOfPages } from "../utils/calculateNumberOfPages";
+import { getBlogs } from "../api/requests/blog";
 
 function BlogPage() {
-    const queryClient = useQueryClient()
-
     const navigate = useNavigate();
-    const { data } = useGetBlogsQuery();
+    const queryClient = useQueryClient()
+    
+    const [page, setPage] = useState(1)
     const [open, setOpen] = useState(false);
+    
+    const { data, isPlaceholderData  } = useGetBlogsQuery(page);
     const { mutateAsync } = useBlogMutation();
+
     const { isAuthenticated } = useAuthStore((state) => state);
-    console.log(data,"data");
+
+    useEffect(() => {
+        if (!isPlaceholderData && page < calculateNumberOfPages(9,data?.totalCount || 0)) {
+          queryClient.prefetchQuery({
+            queryKey: ['projects', page + 1],
+            queryFn: () => getBlogs(page + 1),
+          })
+        }
+      }, [data, isPlaceholderData, page, queryClient])
+
     const handleAddBlog = async (blogData: CreateBlogRequest) => {
         await mutateAsync(blogData,{onSuccess:()=>{
             queryClient.invalidateQueries({queryKey:[QUERY_KEY.BLOG]})
@@ -34,15 +48,7 @@ function BlogPage() {
         }
     };
 
-    const itemsPerPage = 9; 
-    const totalCount = data?.totalCount || 0;
-    const numberOfPages = Math.ceil(totalCount / itemsPerPage);
-
-    const handlePageChange = (page:number) =>{
-console.log(page);
-    }
-
-    console.log('Total pages:', numberOfPages);
+   
 
     return (
         <Box sx={{ padding: '20px' }}>
@@ -54,16 +60,15 @@ console.log(page);
             </Box>
             <BlogForm open={open} onClose={() => setOpen(false)} onSubmit={handleAddBlog} />
             <Box display="flex" justifyContent="center" marginTop={2}>
-                <Pagination count={numberOfPages} onChange={(event, page) => handlePageChange(page)} />
+                <Pagination count={calculateNumberOfPages(9,data?.totalCount || 0)} onChange={(_event,pageNum) => setPage(pageNum)} />
             </Box>
-            <Grid container spacing={2}>
-        {data?.data?.map((blog, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-                <BlogCard title={blog.title} content={blog.content} />
-            </Grid>
-        ))}
-    </Grid>
-   
+            <Grid marginTop={2} container spacing={2} justifyContent="center" alignItems="center">
+            {data?.data?.map((blog, index) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
+                    <BlogCard title={blog.title} content={blog.content} />
+                </Grid>
+            ))}
+           </Grid>
         </Box>
     );
 }

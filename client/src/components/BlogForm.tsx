@@ -6,13 +6,16 @@ import { Box, Button, Dialog, DialogContent, DialogTitle, TextField } from "@mui
 interface Props {
     open: boolean;
     onClose: () => void;
-    onSubmit: (data: any) => void; 
+    onSubmit: (data: any) => void;
 }
 
-
-const BlogForm = ({ open, onClose, onSubmit }:Props) => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(createBlogSchema)
+const BlogForm = ({ open, onClose, onSubmit }: Props) => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(createBlogSchema),
     });
 
     return (
@@ -24,7 +27,7 @@ const BlogForm = ({ open, onClose, onSubmit }:Props) => {
                         margin="normal"
                         fullWidth
                         label="Title"
-                        {...register('title')}
+                        {...register("title")}
                         error={!!errors.title}
                         helperText={errors.title?.message}
                     />
@@ -32,7 +35,7 @@ const BlogForm = ({ open, onClose, onSubmit }:Props) => {
                         margin="normal"
                         fullWidth
                         label="Content"
-                        {...register('content')}
+                        {...register("content")}
                         error={!!errors.content}
                         helperText={errors.content?.message}
                         multiline
@@ -47,4 +50,4 @@ const BlogForm = ({ open, onClose, onSubmit }:Props) => {
     );
 };
 
-export default BlogForm
+export default BlogForm;

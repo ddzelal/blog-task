@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import { getItem } from "../utils/localStorage";
+import { LOCAL_STORAGE_KEY } from "../constants/appConstant";
 
 interface AuthState {
     isAuthenticated: boolean;
@@ -13,7 +15,7 @@ export interface AuthStore extends AuthState {
 }
 
 const initialState: Pick<AuthStore, keyof AuthState> = {
-    isAuthenticated: false,
+    isAuthenticated: getItem(LOCAL_STORAGE_KEY.ACCESS_TOKEN) ? true : false,
     token: null,
 };
 

@@ -1,5 +1,6 @@
 import { type AxiosError, type AxiosResponse, type InternalAxiosRequestConfig } from "axios";
 import { getItem } from "../../utils/localStorage";
+import { toast } from "react-toastify";
 
 export interface ConsoleError {
     status: number;
@@ -28,6 +29,9 @@ export const errorInterceptor = async (error: AxiosError): Promise<void> => {
                 data: error.response.data,
             };
             console.error(errorMessage);
+            // TODO INTERFACE >
+            // @ts-ignore
+            toast.error(errorMessage.data.message);
         } else if (error.request) {
             console.error(error.request);
         } else {

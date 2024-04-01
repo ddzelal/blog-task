@@ -26,5 +26,17 @@
     "fullName": "Emin Kocan",
     "password": "$2a$10$RcWcVdPhvrYmdx6mLn2fi.G5ac18Yt2Oh/V333O6vrI/UID7NqqVy",
     "id": "WJCaFRUthwIJsWqS41sWj"
+  },
+  {
+    "email": "jeff@gmail.com",
+    "fullName": "Jeff Logua",
+    "password": "$2a$10$SlbQNOjvZnbDUZH8hro36O1fMmorIsUKFwBoY7XHtui3p5FAMJ9Ba",
+    "id": "83F2dHpsTPFHx5_kkNM0L"
+  },
+  {
+    "email": "dzelal_d@liveeee.com",
+    "fullName": "Dzelal Dupljak",
+    "password": "$2a$10$96zto5/bu69x857VVV9GC.QO0EulpYjUSJqdeeDRlFhs9Vl/EsU4a",
+    "id": "ZEEDVYpxGK0etHyYisJOb"
   }
 ]

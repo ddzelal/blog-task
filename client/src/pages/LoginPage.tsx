@@ -8,6 +8,7 @@ import { LoginRequest } from "../interfaces/authRequest";
 import useAuthStore from "../store/useAuthStore";
 import { setItem } from "../utils/localStorage";
 import { toast } from "react-toastify";
+import { LOCAL_STORAGE_KEY } from "../constants/appConstant";
 
 const LoginPage = () => {
     const { setIsAuthenticated } = useAuthStore((state) => state);
@@ -24,10 +25,10 @@ const LoginPage = () => {
     const handleLogin = async (data: LoginRequest) => {
         await mutateAsync(data, {
             onSuccess: (response) => {
-                setItem('accessToken',response.accessToken)
+                setItem(LOCAL_STORAGE_KEY.ACCESS_TOKEN, response.accessToken);
                 setIsAuthenticated(true);
                 navigate("/blog");
-                toast.success("successfully login")
+                toast.success("successful login");
             },
         });
     };
@@ -64,7 +65,7 @@ const LoginPage = () => {
                         error={!!errors.password}
                         helperText={errors.password?.message}
                     />
-                    <Button  type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                         Sign In
                     </Button>
                     <Box display="flex" justifyContent="center">

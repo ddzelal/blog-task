@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../validation/authValidation";
 import { useRegisterMutation } from "../services/queries/authService";
 import { RegisterRequest } from "../interfaces/authRequest";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
     const navigate = useNavigate();
@@ -19,7 +20,10 @@ const RegisterPage = () => {
 
     const handleRegister = async (data: RegisterRequest) => {
         await mutateAsync(data, {
-            onSuccess: () => navigate("/login"),
+            onSuccess: () => {
+                navigate("/login");
+                toast("successful registration");
+            },
         });
     };
 

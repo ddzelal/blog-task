@@ -1,7 +1,7 @@
 import express from "express";
 import { statusController } from "./controllers/Status.js";
 import { getBlogs, getBlogById, createBlog, updateBlog, deleteBlog } from "./controllers/Blog.js";
-import { login, register } from "./controllers/Users.js";
+import { getMe, login, register } from "./controllers/Users.js";
 import Authenticate from "./middlewares/Authenticate.js";
 import { validateCreateBlog, validateGetBlogsQuery, validateUpdateBlog } from "./middlewares/BlogValidators.js";
 import { validateLogin, validateRegistration } from "./middlewares/UserValidators.js";
@@ -21,3 +21,4 @@ Router.delete("/blogs/:id", Authenticate, deleteBlog);
 // Authentication routes
 Router.post("/login", validateLogin, login);
 Router.post("/register", validateRegistration, register);
+Router.get("/users/me", Authenticate, getMe);

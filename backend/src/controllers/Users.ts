@@ -39,3 +39,9 @@ export const login = AsyncHandler(async (request: Request, response: Response) =
     const accessToken = jwt.generateAccessToken({ userId: user.id, email: user.email });
     response.status(200).json({ accessToken });
 });
+
+export const getMe = AsyncHandler(async (request: Request, response: Response) => {
+    const { password, ...userInfo } = request.user;
+
+    response.status(200).json(userInfo);
+});

@@ -85,3 +85,4 @@ This section outlines the available routes and their functionalities.
 
 -   **POST** `/login`: Login route for user authentication.
 -   **POST** `/register`: Register a new user. This endpoint creates a new user account.
+-   **GET** `/users/me`: Retrieve Current User Information.

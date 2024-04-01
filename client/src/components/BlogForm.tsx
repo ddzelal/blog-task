@@ -4,9 +4,13 @@ import { useForm } from "react-hook-form";
 import { Box, Button, Dialog, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { useEffect } from "react";
 
-interface BlogFormData {
+export interface BlogFormData {
     title: string;
+    authorId: string;
     content: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    id?:string
 }
 
 interface Props {

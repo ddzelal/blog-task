@@ -3,6 +3,8 @@ export interface Blog {
     title: string;
     authorId: string;
     content: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface CreateBlogRequest {
@@ -10,9 +12,14 @@ export interface CreateBlogRequest {
     content: string;
 }
 
-export interface UpdateBlogRequest {
+export interface UpdateBlogData {
     title: string;
     content: string;
+}
+
+export interface UpdateBlogRequest {
+    body: UpdateBlogData;  
+    blogId: string;
 }
 export interface BlogFindWithFiltersResultResponse {
     data: Blog[];

@@ -19,7 +19,7 @@ export const deleteBlog = async (blogId:string): Promise<void> => {
 };
 
 
-export const updateBlog = async (body: UpdateBlogRequest): Promise<void> => {
-    const { data } = await api.put(API_ENDPOINT_URL.BLOG, body);
+export const updateBlog = async (dataInfo: UpdateBlogRequest): Promise<void> => {
+    const { data } = await api.put(`${API_ENDPOINT_URL.BLOG}/${dataInfo.blogId}`, dataInfo.body);
     return data;
 };

@@ -5,19 +5,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import useAuthStore from "../store/useAuthStore";
 import { Blog } from "../interfaces/blogRequest";
-import { useDeleteBlogMutation } from "../services/queries/blogService";
+import { useDeleteBlogMutation, useUpdateBlogMutation } from "../services/queries/blogService";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "../constants/appConstant";
 import DeleteConfirmationDialog from './DeleteConfirmationDialog';
 import { toast } from 'react-toastify';
-import BlogForm from './BlogForm';
+import BlogForm, { BlogFormData } from './BlogForm';
 
 interface Props {
     blog: Blog;
@@ -28,31 +23,40 @@ export default function BlogCard({ blog }: Props) {
     const queryClient = useQueryClient();
     const [open, setOpen] = useState(false);
     const [isOpenForm, setIsOpenForm] = useState(false)
+
     const { mutateAsync } = useDeleteBlogMutation();
+    const {mutateAsync:updateBlog} = useUpdateBlogMutation();
 
     const { user } = useAuthStore((state) => state);
 
     
-    const handleShowDialog = () =>{
-        setOpen((prev) => !prev)
-    }
 
     const handleDeleteBlogById = async () => {
         await mutateAsync(blog.id!, {
             onSuccess: () => {
                 queryClient.invalidateQueries({ queryKey: [QUERY_KEY.BLOG] });
-                toast("Post deleted")
+                toast("Blog deleted")
+                handleShowDialog();
             },
         });
-        handleShowDialog();
     };
 
-    const handleUpdateBlog= ()=>{
-
+    const handleUpdateBlog= async (data:BlogFormData)=>{
+        await updateBlog({blogId:blog.id!, body:data},{
+            onSuccess:()=>{
+                queryClient.invalidateQueries({ queryKey: [QUERY_KEY.BLOG] });
+                toast("Blog updated")
+                handleOpenForm()
+            }
+        })
+    }
+    
+    const handleShowDialog = () =>{
+        setOpen((prev) => !prev)
     }
 
     const handleOpenForm = ()=> {
-        setIsOpenForm(true)
+        setIsOpenForm((prev) => !prev)
     }
 
    

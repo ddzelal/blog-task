@@ -18,7 +18,7 @@ export const getBlogs = AsyncHandler(async (request: Request, response: Response
     };
     const sort = {
         sortBy: "createdAt",
-        sortOrder: "asc",
+        sortOrder: "desc",
     };
 
     const blogs = await blogModel.findWithFilters(queryFilters as Partial<Blog>, pagination, sort);
@@ -51,7 +51,7 @@ export const updateBlog = AsyncHandler(async (request: Request, response: Respon
     if (!existingBlog) {
         throw new NotFoundException({});
     }
-
+ 
     if (existingBlog.authorId !== request.user.id) {
         throw new AccessDeniedException("User is not authorized to update this blog");
     }

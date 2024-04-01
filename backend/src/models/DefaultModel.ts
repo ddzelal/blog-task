@@ -12,6 +12,8 @@ const __baseDir = getBaseDir();
 
 interface IModel {
     id?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 class DefaultModel<T extends IModel> {
@@ -38,7 +40,7 @@ class DefaultModel<T extends IModel> {
 
     async create(data: Partial<T>): Promise<T> {
         const jsonData = await this.find();
-        const newData = { ...data, id: data.id || nanoid() } as T;
+        const newData = { ...data, id: data.id || nanoid(), createdAt: new Date(), updatedAt: new Date() } as T;
         jsonData.push(newData);
         await fs.writeFile(this.collectionPath, JSON.stringify(jsonData, null, 2));
         return newData;
@@ -58,7 +60,7 @@ class DefaultModel<T extends IModel> {
         const jsonData = await this.find();
         const itemIndex = jsonData.findIndex((item) => item.id === id);
         if (itemIndex >= 0) {
-            jsonData[itemIndex] = { ...jsonData[itemIndex], ...newData };
+            jsonData[itemIndex] = { ...jsonData[itemIndex], ...newData, updatedAt: new Date() };
             await fs.writeFile(this.collectionPath, JSON.stringify(jsonData, null, 2));
             return jsonData[itemIndex];
         }

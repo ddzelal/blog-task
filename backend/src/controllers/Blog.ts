@@ -8,7 +8,7 @@ import { Pagination } from "../types/Pagination";
 const blogModel = new BlogModel();
 
 export const getBlogs = AsyncHandler(async (request: Request, response: Response) => {
-    const { page, itemsPerPage, ...queryFilters } = request.query as {
+    const { page, itemsPerPage, sortBy, sortOrder, ...queryFilters } = request.query as {
         pagination: Pagination;
         [k: string]: any;
     };
@@ -16,8 +16,12 @@ export const getBlogs = AsyncHandler(async (request: Request, response: Response
         page: parseInt(page, 10) || 1,
         itemsPerPage: parseInt(itemsPerPage, 10) || 9,
     };
+    const sort = {
+        sortBy: "createdAt",
+        sortOrder: "asc",
+    };
 
-    const blogs = await blogModel.findWithFilters(queryFilters as Partial<Blog>, pagination);
+    const blogs = await blogModel.findWithFilters(queryFilters as Partial<Blog>, pagination, sort);
 
     response.send(blogs);
 });

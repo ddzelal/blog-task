@@ -13,6 +13,8 @@ export const updateBlogSchema = Joi.object({
 export const getBlogsQuerySchema = Joi.object({
     page: Joi.number().integer().min(1).optional().default(1),
     itemsPerPage: Joi.number().integer().min(1).max(100).optional().default(10),
+    sortBy: Joi.string().trim().optional().default("createdAt"),
+    sortOrder: Joi.string().trim().optional().default("asc"),
     title: Joi.string().trim().optional(),
     authorId: Joi.string().trim().optional(),
 });

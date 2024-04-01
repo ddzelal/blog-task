@@ -8,6 +8,8 @@ export interface User {
     email: string;
     fullName: string;
     password: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 class UserModel extends DefaultModel<User> {

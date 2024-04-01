@@ -1,5 +1,5 @@
 import { API_ENDPOINT_URL } from "../../constants/appConstant";
-import { BlogFindWithFiltersResultResponse, CreateBlogRequest } from "../../interfaces/blogRequest";
+import { BlogFindWithFiltersResultResponse, CreateBlogRequest, UpdateBlogRequest } from "../../interfaces/blogRequest";
 import { api } from "../config/axiosConfig";
 
 export const getBlogs = async (page: number): Promise<BlogFindWithFiltersResultResponse> => {
@@ -15,5 +15,11 @@ export const createBlog = async (body: CreateBlogRequest): Promise<void> => {
 
 export const deleteBlog = async (blogId:string): Promise<void> => {
     const { data } = await api.delete(`${API_ENDPOINT_URL.BLOG}/${blogId}`);
+    return data;
+};
+
+
+export const updateBlog = async (body: UpdateBlogRequest): Promise<void> => {
+    const { data } = await api.put(API_ENDPOINT_URL.BLOG, body);
     return data;
 };

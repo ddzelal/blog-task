@@ -19,3 +19,6 @@ export const useGetUserInfoQuery = (): UseQueryResult<GetMeReposne, Error> => {
         staleTime: Infinity,
     });
 };
+
+
+

@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import  { Fragment, useState } from 'react';
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -17,6 +17,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "../constants/appConstant";
 import DeleteConfirmationDialog from './DeleteConfirmationDialog';
 import { toast } from 'react-toastify';
+import BlogForm from './BlogForm';
 
 interface Props {
     blog: Blog;
@@ -26,6 +27,7 @@ interface Props {
 export default function BlogCard({ blog }: Props) {
     const queryClient = useQueryClient();
     const [open, setOpen] = useState(false);
+    const [isOpenForm, setIsOpenForm] = useState(false)
     const { mutateAsync } = useDeleteBlogMutation();
 
     const { user } = useAuthStore((state) => state);
@@ -45,6 +47,15 @@ export default function BlogCard({ blog }: Props) {
         handleShowDialog();
     };
 
+    const handleUpdateBlog= ()=>{
+
+    }
+
+    const handleOpenForm = ()=> {
+        setIsOpenForm(true)
+    }
+
+   
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia sx={{ height: 140 }} image="https://picsum.photos/seed/picsum/200/300" title="Blog Image" />
@@ -57,13 +68,18 @@ export default function BlogCard({ blog }: Props) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
-                <Button size="small">Learn More</Button>
-                {user?.id === blog.authorId && <Button onClick={handleShowDialog} color="warning">
+                <Button variant='contained'>VIEW</Button>
+                {user?.id === blog.authorId && 
+                <Fragment>
+                <Button onClick={handleOpenForm} color='inherit' variant='contained'>UPDATE</Button>
+                <Button variant='contained' onClick={handleShowDialog} color="warning">
                     DELETE
-                </Button>}
+                </Button>
+                </Fragment>
+                }
             </CardActions>
             <DeleteConfirmationDialog onClose={handleShowDialog} onConfirm={handleDeleteBlogById} open={open}/>
+            <BlogForm onSubmit={handleUpdateBlog} onClose={()=> setIsOpenForm(false)} open={isOpenForm} initialValues={blog}/>
         </Card>
     );
 }

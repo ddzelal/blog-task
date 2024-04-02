@@ -37,7 +37,7 @@ class BlogModel extends DefaultModel<Blog> {
             filteredBlogs = filteredBlogs.filter((blog) => blog.authorId === filters.authorId);
         }
 
-        allBlogs.sort((a, b) => {
+        filteredBlogs.sort((a, b) => {
             if (sort.sortBy === "createdAt" || sort.sortBy === "updatedAt") {
                 if (sort.sortOrder === "asc") {
                     return new Date(a[sort.sortBy]).getTime() - new Date(b[sort.sortBy]).getTime();

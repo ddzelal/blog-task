@@ -17,8 +17,8 @@ export const getBlogs = AsyncHandler(async (request: Request, response: Response
         itemsPerPage: parseInt(itemsPerPage, 10) || 9,
     };
     const sort = {
-        sortBy: "createdAt",
-        sortOrder: "desc",
+        sortBy: sortBy || "createdAt",
+        sortOrder: sortOrder || "desc",
     };
 
     const blogs = await blogModel.findWithFilters(queryFilters as Partial<Blog>, pagination, sort);

@@ -28,7 +28,6 @@ function BlogPage() {
 
     const { isAuthenticated, user } = useAuthStore((state) => state);
 
-    useEffect(() => {}, [user]);
 
     useEffect(() => {
         if (!isPlaceholderData && page < calculateNumberOfPages(9, data?.totalCount || 0)) {

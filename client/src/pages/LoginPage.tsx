@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography, Container, Paper, Link } from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useGetUserInfoQuery, useLoginMutation } from "../services/queries/authService";
+import {  useLoginMutation } from "../services/queries/authService";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../validation/authValidation";

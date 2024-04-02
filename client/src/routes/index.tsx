@@ -12,6 +12,7 @@ const Router = () => (
         <Route errorElement={<ErrorBoundary />} path="/blog/:blogId" element={<BlogInfo />} />
         <Route errorElement={<ErrorBoundary />} path="/login" element={<LoginPage />} />
         <Route errorElement={<ErrorBoundary />} path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<h1>Not found</h1>} />
     </Routes>
 );
 

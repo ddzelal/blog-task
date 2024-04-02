@@ -1,9 +1,10 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios";
 import { errorInterceptor, requestInterceptor, successInterceptor } from "../interceptors/interceptors";
+import { API_ENDPOINT_URL } from "../../constants/appConstant";
 
 const axiosRequestConfig: AxiosRequestConfig = {
-    // TODO
-    baseURL: "http://localhost:9001",
+    // TODO ENV >
+    baseURL: API_ENDPOINT_URL.API_URL,
     responseType: "json",
     headers: {
         "Content-Type": "application/json",

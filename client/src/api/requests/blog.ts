@@ -3,12 +3,12 @@ import { Blog, BlogFindWithFiltersResultResponse, CreateBlogRequest, UpdateBlogR
 import { api } from "../config/axiosConfig";
 
 export const getBlogs = async (
-    page: number,
-    sortOrder: string,
-    sortBy: string,
+    page: number = 1 ,
+    sortOrder: string = "desc",
+    sortBy: string = "updatedAt",
 ): Promise<BlogFindWithFiltersResultResponse> => {
     const { data } = await api.get(
-        `${API_ENDPOINT_URL.BLOG}?page=${page ? page : "1"}&sortOrder=${sortOrder ? sortOrder : "desc"}&sortBy=${sortBy ? sortBy : "updatedAt"}`,
+        `${API_ENDPOINT_URL.BLOG}?page=${page}&sortOrder=${sortOrder}&sortBy=${sortBy}`,
     );
     return data;
 };

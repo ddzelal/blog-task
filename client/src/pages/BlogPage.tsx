@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 import { CreateBlogRequest } from "../interfaces/blogRequest";
 import { Box, Button, Grid, Pagination } from "@mui/material";
-import SearchBar from "../components/SearchBar";
 import BlogForm from "../components/BlogForm";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "../constants/appConstant";
@@ -73,7 +72,6 @@ function BlogPage() {
     return (
         <Box sx={{ padding: "20px" }}>
             <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom={2}>
-                <SearchBar onSearch={(e) => console.log(e.target.value)} />
                 <Button onClick={toggleSortOrder}>{sortOrder === "asc" ? "desc" : "asc"}</Button>
                 <Button onClick={toggleSortBy}>
                     Sort by {sortBy === "createdAt" ? "Updated Date" : "Created Date"}

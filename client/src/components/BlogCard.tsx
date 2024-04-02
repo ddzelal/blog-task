@@ -13,6 +13,7 @@ import { QUERY_KEY } from "../constants/appConstant";
 import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
 import { toast } from "react-toastify";
 import BlogForm, { BlogFormData } from "./BlogForm";
+import { useNavigate } from "react-router";
 
 interface Props {
     blog: Blog;
@@ -20,7 +21,10 @@ interface Props {
 }
 
 export default function BlogCard({ blog }: Props) {
+
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
+
     const [open, setOpen] = useState(false);
     const [isOpenForm, setIsOpenForm] = useState(false);
 
@@ -80,7 +84,7 @@ export default function BlogCard({ blog }: Props) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button variant="contained">VIEW</Button>
+                <Button variant="contained" onClick={()=> navigate(`/blog/${blog.id}`)}>VIEW</Button>
                 {user?.id === blog.authorId && (
                     <Fragment>
                         <Button onClick={handleOpenForm} color="inherit" variant="contained">

@@ -9,14 +9,6 @@
   },
   {
     "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
-    "title": "Exploring the Depths of Ocean Biodiversity",
-    "content": "The ocean is home to a vast array of life forms, many of which remain undiscovered. This blog delves into the importance of ocean biodiversity and the ongoing efforts to explore and protect this critical ecosystem.",
-    "id": "4bNeUawabSjvn8Sf7IS0E",
-    "createdAt": "2024-04-01T19:46:36.351Z",
-    "updatedAt": "2024-04-01T19:46:43.235Z"
-  },
-  {
-    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
     "title": "The Impact of Artificial Intelligence on Society",
     "content": "Artificial Intelligence (AI) is transforming industries and shaping the future of human interaction. This post examines the societal impact of AI and discusses both the opportunities and challenges it presents.",
     "id": "hqzpQnBDqvV3bpkWHzaT6",
@@ -46,5 +38,45 @@
     "id": "FSy9gz2TT03Yx9heKmnDr",
     "createdAt": "2024-04-01T19:58:04.244Z",
     "updatedAt": "2024-04-01T19:58:04.244Z"
+  },
+  {
+    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
+    "title": "Innovations in Green Building",
+    "content": "Green building practices are transforming the construction industry. This blog post discusses the latest innovations in sustainable architecture and how they are making buildings more energy-efficient and environmentally friendly.",
+    "id": "9oK0ZXN8u3fP1q2AeT4Hg",
+    "createdAt": "2024-03-20T09:30:15.123Z",
+    "updatedAt": "2024-03-22T10:45:30.456Z"
+  },
+  {
+    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
+    "title": "The Rise of Smart Cities",
+    "content": "Smart cities use technology to improve the quality of life for their residents. This article explores how urban areas around the world are integrating smart technology to enhance sustainability, transportation, and public services.",
+    "id": "8pH0ZF5yjNfC3q4BsX6Ed",
+    "createdAt": "2024-03-15T14:48:23.654Z",
+    "updatedAt": "2024-03-18T16:50:47.891Z"
+  },
+  {
+    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
+    "title": "Advancements in Biotechnology",
+    "content": "Biotechnology is at the forefront of scientific research, with breakthroughs in genetics and molecular biology. This post examines the latest advancements in biotechnology and their implications for healthcare and agriculture.",
+    "id": "7jH9kI0VrLfX5s6TzQaCp",
+    "createdAt": "2024-03-10T18:55:42.789Z",
+    "updatedAt": "2024-03-12T19:00:55.321Z"
+  },
+  {
+    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
+    "title": "Understanding the Global Economy",
+    "content": "The global economy is influenced by a variety of factors, from international trade agreements to shifts in technology. This blog delves into the complexities of the global economy and what the future may hold.",
+    "id": "5gI8zU1vKpDx7s8TyQbFm",
+    "createdAt": "2024-02-28T12:10:30.456Z",
+    "updatedAt": "2024-03-02T13:15:48.789Z"
+  },
+  {
+    "authorId": "3TrOa2cv9fJ8sSSjSvfzy",
+    "title": "The Psychology of Decision Making",
+    "content": "Decision making is a complex process influenced by a multitude of factors. This article explores the psychology behind decision making, discussing how individuals and organizations can make better choices.",
+    "id": "4aF3gH1jKlMn9o0PrQbCv",
+    "createdAt": "2024-02-20T17:25:50.678Z",
+    "updatedAt": "2024-02-22T18:30:55.123Z"
   }
 ]

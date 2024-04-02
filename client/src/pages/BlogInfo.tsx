@@ -3,9 +3,8 @@ import { Card, CardContent, CardMedia, Typography, Box, CircularProgress } from 
 import { useGetBlogByIdQuery } from "../services/queries/blogService";
 
 const BlogInfo = () => {
-    
     const { blogId } = useParams<{ blogId: string | undefined }>();
-    const { data: blog, isLoading, error } = useGetBlogByIdQuery(blogId ?? '');
+    const { data: blog, isLoading, error } = useGetBlogByIdQuery(blogId ?? "");
 
     if (isLoading) {
         return (
@@ -39,7 +38,8 @@ const BlogInfo = () => {
                         {blog.title}
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-                        Created on: {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                        Created on:{" "}
+                        {new Date(blog.createdAt).toLocaleDateString("en-US", {
                             year: "numeric",
                             month: "long",
                             day: "numeric",

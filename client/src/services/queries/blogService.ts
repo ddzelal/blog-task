@@ -1,5 +1,10 @@
 import { UseMutationResult, UseQueryResult, useMutation, useQuery } from "@tanstack/react-query";
-import { Blog, BlogFindWithFiltersResultResponse, CreateBlogRequest, UpdateBlogRequest } from "../../interfaces/blogRequest";
+import {
+    Blog,
+    BlogFindWithFiltersResultResponse,
+    CreateBlogRequest,
+    UpdateBlogRequest,
+} from "../../interfaces/blogRequest";
 import { createBlog, deleteBlog, getBlogById, getBlogs, updateBlog } from "../../api/requests/blog";
 import { QUERY_KEY } from "../../constants/appConstant";
 
@@ -15,13 +20,13 @@ export const useGetBlogsQuery = (
     });
 };
 
-export const useGetBlogByIdQuery = (blogId:string) : UseQueryResult<Blog,Error> => {
-    return useQuery<Blog,Error>({
-        queryKey:[QUERY_KEY.BLOG_BY_ID,blogId],
-        queryFn:()=> getBlogById(blogId),
+export const useGetBlogByIdQuery = (blogId: string): UseQueryResult<Blog, Error> => {
+    return useQuery<Blog, Error>({
+        queryKey: [QUERY_KEY.BLOG_BY_ID, blogId],
+        queryFn: () => getBlogById(blogId),
         staleTime: Infinity,
-    })
-}
+    });
+};
 
 export const useBlogMutation = (): UseMutationResult<void, Error, CreateBlogRequest> => {
     return useMutation<void, Error, CreateBlogRequest>({ mutationFn: createBlog });

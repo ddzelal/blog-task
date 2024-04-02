@@ -12,10 +12,12 @@ export const getBlogs = AsyncHandler(async (request: Request, response: Response
         pagination: Pagination;
         [k: string]: any;
     };
+
     const pagination = {
         page: parseInt(page, 10) || 1,
         itemsPerPage: parseInt(itemsPerPage, 10) || 9,
     };
+
     const sort = {
         sortBy: sortBy || "createdAt",
         sortOrder: sortOrder || "desc",
@@ -51,7 +53,7 @@ export const updateBlog = AsyncHandler(async (request: Request, response: Respon
     if (!existingBlog) {
         throw new NotFoundException({});
     }
- 
+
     if (existingBlog.authorId !== request.user.id) {
         throw new AccessDeniedException("User is not authorized to update this blog");
     }

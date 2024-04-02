@@ -28,7 +28,7 @@ export const login = AsyncHandler(async (request: Request, response: Response) =
 
     const user = await userModel.findByEmail(email);
     if (!user) {
-        throw new NotFoundException({message:"User not found"});
+        throw new NotFoundException({ message: "User not found" });
     }
 
     const isPasswordValid = bcrypt.compareSync(password, user.password);

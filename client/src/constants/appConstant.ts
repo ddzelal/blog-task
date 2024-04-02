@@ -1,5 +1,5 @@
 export const API_ENDPOINT_URL = {
-    API_URL:"http://localhost:9001",
+    API_URL: "http://localhost:9001",
     LOGIN: "/login",
     REGISTER: "/register",
     BLOG: "/blogs",
@@ -11,7 +11,7 @@ export const QUERY_KEY = {
     BLOG: "blog",
     USER: "user",
     DELETE_BLOG: "deleteBlog",
-    BLOG_BY_ID:"blogById"
+    BLOG_BY_ID: "blogById",
 };
 
 export const LOCAL_STORAGE_KEY = {
